@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <div>
       <Main />
-      <Row title="Up Coming" fetchURL={requests.requestUpcoming} />
-      <Row title="Popular" fetchURL={requests.requestPopular} />
-      <Row title="Top Rated" fetchURL={requests.requestTopRated} />
+      <Row rowID="1" title="Up Coming" fetchURL={requests.requestUpcoming} />
+      <Row rowID="2" title="Popular" fetchURL={requests.requestPopular} />
+      <Row rowID="3" title="Top Rated" fetchURL={requests.requestTopRated} />
     </div>
   );
 };
