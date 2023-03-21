@@ -12,13 +12,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+
     try {
+      setError("");
       await signIn(email, password);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      setError(error.message);
+      if (user?.email) navigate("/");
+      else throw new Error("Invalid");
+    } catch (err) {
+      console.log(err.message);
+      setError(err.message);
     }
   };
 
@@ -27,7 +29,7 @@ const Login = () => {
       <div className="w-full h-screen ">
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/d049a3bd-40ee-411b-9f16-d1def798d43b/8ca1907b-c227-4d14-901b-a6114dbc6548/CA-en-20230313-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-          alt="sign-up-image"
+          alt="sign-up"
           className="hidden sm:block absolute w-full h-full object-cover"
         />
         <div className="bg-black/60 fixed top-0 left-0 w-full h-screen"></div>
@@ -36,7 +38,7 @@ const Login = () => {
             <div className="max-w-[320px] mx-auto py-16">
               <h1 className="text-3xl font-bold">Sign In</h1>
               {error ? (
-                <p className="p-3 bg-red-200 my-2">{error.message}</p>
+                <p className="p-3 bg-red-200 my-2 text-white">{error}</p>
               ) : null}
               <form
                 className="w-full flex flex-col py-4"
